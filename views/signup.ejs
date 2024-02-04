@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup page</title>
+</head>
+<body>
+    <form action="/signup" autocomplete="off" class="form" method="post">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <label for="username">email: </label>
+        <input type="email" name="email" required>
+        <label for="password"  >password: </label>
+        <input type="password" name="password" id="password" required>
+        <label for="confirm-password" >confirm password: </label>
+        <input type="password" name="confirmpassword" id="confirm-password" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p><%= error  %></p>
+    <a href="/login"><%= login %></a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=userId %></title>
+</head>
+<body>
+    <form action="/user/<%= userId %>/addIncome" method="post">    
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <input type="hidden" name="userId" value="<%= userId %>"> 
+        <label for="card">Card Amount</label>
+        <input type="number" id="card" name="card" required>
+        <label for="cash" >Cash Amount</label>
+        <input id="cash" name="cash" type="number" required>
+        <label for="month">Month: </label>
+        <input type="month" id="month"  name="month" required>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <h1>welcome to the expense tracker</h1>
+    <form action="/login" autocomplete="off" method="post">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <label for="email">email:</label>
+        <input type="email" name="email" id="email" required>
+        <label for="password">password:</label>
+        <input type="password" name="password" id="password" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p><%= error %></p>
+    <a href="/signup"><%= signup %></a>
+</body>
+</html>

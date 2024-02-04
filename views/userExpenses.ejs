@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <h1>hii welcome</h1>
+    <h2><%= month %></h2>
+    <form action="/user/<%= userId %>/month" method="post">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <label for="month">change month</label>
+        <input type="month" name="month" id="month" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <button><a href="/logout">Logout</a></button>
+    <div id="income-container">
+        <% if(amount.length ==0){ %>
+            <h1>no income found</h1>
+            <div id="input-container">
+                <button id="income"><a href="/user/<%= userId %>/addIncome">Add income +</a></button>
+            </div>
+        <% } else { %>
+        
+        <div class="card">
+            <p>Card</p>
+            <p><%= amount[0].cardAmount %></p>
+        </div>
+
+        <div class="cash">
+            <p>Cash</p>
+            <p><%= amount[0].cashAmount %></p>
+        </div>
+
+        <div class="Available">
+            <p>Available</p>
+            <p><%= amount[0].cashAmount + amount[0].cardAmount %></p>
+        </div>
+
+        <div class="expenses">
+            <p>expenses</p>
+            <p><%= expenses %></p>
+        </div>
+
+        <div class="totalincome">
+            <p>total income</p>
+            <p><%= amount[0].cashAmount + amount[0].cardAmount + expenses %></p>
+        </div>
+
+        <div id="input-container">
+            <button id="income"><a href="/user/<%= userId %>/addIncome">Add income +</a></button>
+            <button id="expense"><a href="/user/<%= userId %>/addExpense">Add Expenses</a></button>
+        </div>
+        <% } %>
+    </div>
+
+    <div id="expense-container">
+        <% if(expenseData.length == 0){ %>
+            <h1>no expenses found</h1>
+        <% } else { %>
+            <% expenseData.forEach(expense => { %>
+                <div class="expense">
+                    <div class="category">
+                        <p><%= expense.categoryName%></p>
+                        <p><%= expense.paymentMode %></p>
+                    </div>
+
+                    <div class="amount-container">
+                        <p>
+                            <%= expense.amount %>
+                        </p>
+                    </div>
+                    <div id="update-container">
+                        <form action="/user/<%=userId %>/updateExpense" method = "post">
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <input type="hidden" name="id" value="<%= expense.id %>">
+                            <input type="hidden" name="amount" value="<%= expense.amount %>">
+                            <input type="hidden" name="date" value="<%= expense.date %>">
+                            <input type="hidden" name="month" value="<%= expense.month %>">
+                            <input type="hidden" name="year" value="<%= expense.year%>">
+                            <input type="hidden" name="date" value="<%= expense.date %>">
+                            <input type="hidden" name="category" value="<%= expense.categoryName%>">
+                            <input type="hidden" name="payment" value="<%= expense.paymentMode%>">
+                            <input type="hidden" name="description" value="<%= expense.description%>">
+                            <button type="submit">update</button>
+                        </form>
+                    </div>
+                    <div id="delete-container">
+                        <form action="/user/<%=userId %>/deleteExpense" method = "post">
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <input type="hidden" name="id" value="<%= expense.id %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+    
+    
+</body>
+</html>

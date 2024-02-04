@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url("https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/c6/66/t-bbp-69-expense-tracker-planner-insert_ver_2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#container{
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#title{
+    text-align: center;
+    text-transform: uppercase;
+}
+
